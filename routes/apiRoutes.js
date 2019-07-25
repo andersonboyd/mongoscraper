@@ -51,8 +51,8 @@ module.exports = function(app){
         });
     });
     //gets saved articles from db
-    app.get("/saved", function(req, res){
-        db.Article.findOne({isSaved: true})
+    app.get("/save", function(req, res){
+        db.Article.findOne({is: true})
         .populate("comment")
         .then(function(saved){
             res.json(saved);
@@ -63,7 +63,7 @@ module.exports = function(app){
     });
 
     //saves article (updates article.isSaved)
-    app.put("/saved/:id", function(req, res){
+    app.put("/save/:id", function(req, res){
         db.Article.findOneAndUpdate(
             {_id: req.params.id},
             {$set: {isSaved: true}},

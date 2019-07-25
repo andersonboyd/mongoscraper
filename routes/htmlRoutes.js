@@ -10,7 +10,7 @@ module.exports = function(app){
             });
         })
     });
-    app.get("/save", function(req, res){
+    app.get("/saved", function(req, res){
         db.Article.find({isSaved:true})
         .populate("comment")
         .then(function(dbArticle){

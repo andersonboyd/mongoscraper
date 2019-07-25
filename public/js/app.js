@@ -28,7 +28,7 @@ $(".save").on("click", function(event){
 
     $.ajax({
         method: "PUT",
-        url: "/saved/" + thisId
+        url: "/save/" + thisId
     }).then(function(data){
         console.log(data);
     }).catch(function(err){
@@ -40,10 +40,10 @@ $("#saved").on("click", function(event){
     event.preventDefault();
     $.ajax({
         method: "GET",
-        url: "/saved"
+        url: "/save"
     }).then(function(saved){
         console.log(saved);
-        window.location.href = "/save"
+        window.location.href = "/saved"
     });
 });
 
