@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     name: {
         type: String,
-        required: "You must enter a username!"
     },
     savedArticles: [
         {

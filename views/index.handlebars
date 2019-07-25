@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Welcome to FiveThirtyScrape</h1>
+    <button type="submit" id="scraper">Scrape it!</button>
+    <div class="wrapper">
+        <div id="articles">
+            {{#each articles}}
+                {{> articles/article-block}}
+            {{/each}}
+        </div>
+    </div>
+</div>
