@@ -18,26 +18,16 @@ module.exports = function(app){
                 result.link = $(this)
                 .attr("data-href");
                 if(result.title && result.link){
-                    db.Article.find(result)
+                    db.Article.create(result)
                     .then(function(dbArticle){
-                        if(!dbArticle){
-                            db.Article.create(result)
-                            .then(function(dbNew){
-                                console.log(dbNew);
-                                res.json(dbNew);
-                            })
-                            .catch(function(err){
-                                console.log(err);
-                                res.status(500).send();
-                            });
-                        }else{
-                            res.json(dbArticle);
-                        }
+                        console.log(dbArticle);
                     }).catch(function(err){
                         console.log(err);
                     })
                 }
             });
+
+            res.send("Scraped");
         });
     });
     
