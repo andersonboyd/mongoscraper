@@ -1,11 +1,22 @@
 <div class="container">
     <h1>Welcome to FiveThirtyScrape</h1>
-    <button type="submit" id="scraper">Scrape it!</button>
+    <button type="button" id="scraper">Scrape it!</button>
+    <button type="button" id="saved">View saved articles</button>
     <div class="wrapper">
-        <div id="articles">
+        <ul class="articles">
             {{#each articles}}
-                {{> articles/article-block}}
+                <li id="article-scraped">
+                    <a data-id="{{this._id}}" data-isSaved="{{this.isSaved}}" href="{{this.link}}">{{this.title}}</a>
+                    {{#if comment}}
+                        {{> comments/comment-block}}
+                    {{/if}}
+                    <button type="submit" class="save">Save article</button>
+                    <button type="submit" class="comment" data-id="{{this._id}}">Leave a comment</button>
+                </li>
             {{/each}}
-        </div>
+        </ul>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/app.js"></script>
