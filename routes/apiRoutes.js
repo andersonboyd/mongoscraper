@@ -48,11 +48,21 @@ module.exports = function(app){
             res.json(found);
         }).catch(function(err){
             console.log(err);
-        })
-    })
+        });
+    });
+
+    app.get("/articles/:id", function(req, res){
+        db.Article.findOne({_id: req.params.id})
+        .populate("comment")
+        .then(function(found){
+            res.json(found);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
     //gets saved articles from db
     app.get("/saved", function(req, res){
-        db.Articles.find({isSaved: true})
+        db.Article.findOne({isSaved: true})
         .populate("comment")
         .then(function(saved){
             res.json(saved);
@@ -64,7 +74,7 @@ module.exports = function(app){
 
     //saves article (updates article.isSaved)
     app.put("/saved/:id", function(req, res){
-        db.Articles.findOneAndUpdate(
+        db.Article.findOneAndUpdate(
             {_id: req.params.id},
             {$set: {isSaved: true}},
             {new: true})
@@ -78,7 +88,7 @@ module.exports = function(app){
     });
     
     //submit comments to db
-    app.post("/submit/:id", function(req, res){
+    app.post("/articles/:id", function(req, res){
         db.Comment.create(req.body)
         .then(function(dbComment){
             return db.Article.findOneAndUpdate(
