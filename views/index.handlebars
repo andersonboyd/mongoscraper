@@ -3,16 +3,19 @@
     <button type="button" id="scraper">Scrape it!</button>
     <button type="button" id="saved">View saved articles</button>
     <div class="wrapper">
+        <div id="comments" data-id="{{this._id}}"></div>
         <ul class="articles">
             {{#each articles}}
                 <li id="article-scraped">
+                    <br>
                     <a data-id="{{this._id}}" data-isSaved="{{this.isSaved}}" href="{{this.link}}">{{this.title}}</a>
+                    <br><br>
                     <button type="submit" class="save" data-id={{this._id}}>Save article</button>
-                    <button type="submit" class="comment" data-id="{{this._id}}">Leave a comment</button>
+                    <a href="#comments"><button type="submit" class="comment" data-id="{{this._id}}">Leave a comment</button></a>
+                    <br><br>
                 </li>
             {{/each}}
         </ul>
-        <div id="comments" data-id="{{this._id}}"></div>
     </div>
 </div>
 

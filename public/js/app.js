@@ -50,6 +50,7 @@ $("#saved").on("click", function(event){
 $(".comment").on("click", function(event){
     event.preventDefault();
     var thisId = $(this).attr("data-id");
+    $("#comments").removeClass("hidden");
     $("#comments").empty();
     console.log(this);
     console.log(thisId);
@@ -89,4 +90,5 @@ $(document).on("click", "#saveComment", function(){
 
     $("#titleInput").val("");
     $("#bodyInput").val("");
+    $("#comments").addClass("hidden");
 })
